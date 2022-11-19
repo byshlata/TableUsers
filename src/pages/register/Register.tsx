@@ -9,8 +9,7 @@ import style from '../mainPageStyle/mainPageStyle.module.sass';
 
 import { Path } from 'enums';
 import { useAppDispatch } from 'hooks';
-import { selectorIsProgress } from 'store';
-import { createAccount } from 'store/thunk';
+import { selectorIsProgress, createAccount } from 'store';
 import { UserRegistrationType } from 'types';
 
 export const Register = (): React.ReactElement => {

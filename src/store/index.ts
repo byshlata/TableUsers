@@ -11,7 +11,7 @@ export {
   selectorErrorMessage,
 } from './selector';
 
-export { userAuthSlice, startApp, occurredError, logout } from './slice';
+export { userAuthSlice, startApp, occurredError, logout, cleanSlice } from './slice';
 
 export {
   deleteUsers,

@@ -12,7 +12,9 @@ export const initialState: InitStateType = { users: null };
 export const usersSlice = createSlice({
   name: 'usersSlice',
   initialState,
-  reducers: {},
+  reducers: {
+    cleanSlice: () => initialState,
+  },
   extraReducers: builder => {
     builder.addCase(getUsers.fulfilled, (state, action) => {
       const payload = action.payload as unknown as UsersResponseType;
@@ -30,3 +32,5 @@ export const usersSlice = createSlice({
     });
   },
 });
+
+export const { cleanSlice } = usersSlice.actions;

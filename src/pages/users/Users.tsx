@@ -3,15 +3,17 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { DeleteFilled, LockFilled, UnlockFilled } from '@ant-design/icons';
 import { Button, Table } from 'antd';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { columns } from './data/tableHeader';
 
-import { Status } from 'enums';
+import { Path, Status } from 'enums';
 import { useAppDispatch } from 'hooks';
 import {
   deleteUsers,
   getUsers,
   selectorIsProgress,
+  selectorUserAuthName,
   selectorUsers,
   updateUsers,
 } from 'store';
@@ -21,7 +23,12 @@ export const Users = (): ReactElement => {
   const dispatch = useAppDispatch();
   const users = useSelector(selectorUsers);
   const isLoading = useSelector(selectorIsProgress);
+  const isAuth = useSelector(selectorUserAuthName);
+  const navigate = useNavigate();
 
+  if (!isAuth) {
+    navigate(`${Path.Root}`);
+  }
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]): void => {

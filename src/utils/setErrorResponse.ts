@@ -1,7 +1,7 @@
 import { Dispatch } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 
-import { logout } from 'store';
+import { cleanSlice, logout } from 'store';
 
 export const setErrorResponse = (
   e: any,
@@ -12,6 +12,7 @@ export const setErrorResponse = (
   if (axios.isAxiosError(err)) {
     if (err.response?.data?.auth === false) {
       dispatch(logout());
+      dispatch(cleanSlice());
     }
     const error = err.response?.data ? err.response.data.message : err.message;
     return rejectWithValue(error);

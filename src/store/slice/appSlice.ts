@@ -41,18 +41,14 @@ export const appSlice = createSlice({
     builder.addMatcher(
       action => action.type.endsWith('/pending'),
       state => {
-        if (state.isAuthRequest) {
-          state.isProgress = true;
-        }
+        state.isProgress = true;
       },
     );
 
     builder.addMatcher(
       action => action.type.endsWith('/rejected'),
       (state, action: PayloadAction<string>) => {
-        if (state.isAuthRequest) {
-          state.isProgress = false;
-        }
+        state.isProgress = false;
         state.errorMessage = action.payload;
       },
     );
@@ -60,9 +56,7 @@ export const appSlice = createSlice({
     builder.addMatcher(
       action => action.type.endsWith('/fulfilled'),
       state => {
-        if (state.isAuthRequest) {
-          state.isProgress = false;
-        }
+        state.isProgress = false;
       },
     );
   },
