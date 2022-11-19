@@ -1,6 +1,6 @@
 import axios from 'axios';
 
 export const API_CONFIG = axios.create({
-  baseURL: 'https://user-s-server.vercel.app',
+  baseURL: process.env.REACT_APP_BASE_URL,
   withCredentials: true,
 });
