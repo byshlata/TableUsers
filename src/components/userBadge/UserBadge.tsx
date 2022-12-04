@@ -29,7 +29,12 @@ export const UserBadge = ({
     <div className={style.block}>
       <div className={style.item}>
         <Text>{name}</Text>
-        <Avatar src={image} icon={<UserOutlined />} />
+        <Avatar
+          style={{ marginRight: '10px', marginLeft: '10px' }}
+          src={image}
+          shape="square"
+          icon={<UserOutlined />}
+        />
         <Button type="primary" disabled={disable} onClick={onClick}>
           Logout
         </Button>
