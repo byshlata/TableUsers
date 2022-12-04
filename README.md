@@ -1,8 +1,8 @@
-# Project: TableUsers
+# Project: UserAccount
 
 This project was made on [Create React App](https://github.com/facebook/create-react-app).
 
-The project uses the API: [Link to API](https://byshlata-user-s-server.vercel.app/).
+The project uses the API: [Link to API](https://useraccountserver-production.up.railway.app/).
 
 ## Technologies used in the work:
 <span>
