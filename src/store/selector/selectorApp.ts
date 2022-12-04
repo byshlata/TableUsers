@@ -3,9 +3,6 @@ import { Nullable } from 'types';
 
 export const selectorIsProgress = (state: AppRootStore): boolean => state.app.isProgress;
 
-export const selectorIsLoadingApp = (state: AppRootStore): boolean =>
-  state.app.isLoadingApp;
-
 export const selectorIsAuthRequest = (stat: AppRootStore): boolean =>
   stat.app.isAuthRequest;
 

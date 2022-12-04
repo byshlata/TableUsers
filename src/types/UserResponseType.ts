@@ -1,5 +1,5 @@
-import { UserAuthType } from 'types';
+import { UserType } from 'types';
 
 export type UserResponseType = {
-  user: UserAuthType;
+  user: UserType;
 };

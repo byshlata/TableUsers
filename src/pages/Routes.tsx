@@ -4,22 +4,21 @@ import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { Path } from 'enums';
-import { Login, Page404, Register, Users } from 'pages';
-import { selectorUserAuthName } from 'store';
+import { Account, Login, Page404, Register } from 'pages';
+import { selectorUserFirstName } from 'store';
 
 export const Routers = (): ReactElement | null => {
-  const isAuth = useSelector(selectorUserAuthName);
-
+  const isAuth = useSelector(selectorUserFirstName);
   const LOGIN = <Navigate to={`${Path.Login}`} />;
-  const USERS = <Navigate to={`${Path.Users}`} />;
+  const USER = <Navigate to={`${Path.User}`} />;
 
   return (
     <Routes>
       <Route path={`${Path.Other}`} element={<Page404 />} />
-      <Route path={`${Path.Root}`} element={isAuth ? USERS : LOGIN} />
-      <Route path={`${Path.Users}`} element={isAuth ? <Users /> : LOGIN} />
-      <Route path={`${Path.Register}`} element={isAuth ? USERS : <Register />} />
-      <Route path={`${Path.Login}`} element={isAuth ? USERS : <Login />} />
+      <Route path={`${Path.Root}`} element={isAuth ? USER : LOGIN} />
+      <Route path={`${Path.User}`} element={isAuth ? <Account /> : LOGIN} />
+      <Route path={`${Path.Register}`} element={isAuth ? USER : <Register />} />
+      <Route path={`${Path.Login}`} element={isAuth ? USER : <Login />} />
     </Routes>
   );
 };

@@ -1,13 +1,7 @@
 export { setErrorResponse } from './setErrorResponse';
 
-export { formattedDate } from './formattedDate';
-
-export { changeDataUserForTable } from './changeDataUserForTable';
-
-export { createDataDeleteUserById } from './createDataDeleteUserById';
-
 export { loadStateToken, saveState } from './saveLocalStorage';
 
-export { formattedYear } from './formattedYear';
+export { beforeUpload } from './beforeUpload';
 
-export { formattedTime } from './formattedTime';
+export { getBase64 } from './getBase64';

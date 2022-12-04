@@ -3,21 +3,22 @@ export type { AppDispatchType, AppRootStore } from './store';
 export { store } from './store';
 
 export {
-  selectorUserAuthName,
-  selectorUsers,
   selectorIsProgress,
-  selectorIsLoadingApp,
+  selectorUser,
+  selectorUserFirstName,
   selectorIsAuthRequest,
   selectorErrorMessage,
+  selectorAvatarUser,
 } from './selector';
 
-export { userAuthSlice, startApp, occurredError, logout, cleanSlice } from './slice';
+export { userSlice, occurredError, logout } from './slice';
 
 export {
-  deleteUsers,
-  getUsers,
+  deleteAccount,
+  getLinkPDF,
   auth,
   loginAccount,
   createAccount,
-  updateUsers,
+  updateUser,
+  updateAvatar,
 } from './thunk';

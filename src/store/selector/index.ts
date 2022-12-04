@@ -1,10 +1,7 @@
-export { selectorUserAuthName } from './selectorUserAuth';
-
-export { selectorUsers } from './selectorUsers';
+export { selectorUser, selectorUserFirstName, selectorAvatarUser } from './selectorUser';
 
 export {
   selectorIsProgress,
-  selectorIsLoadingApp,
   selectorIsAuthRequest,
   selectorErrorMessage,
 } from './selectorApp';

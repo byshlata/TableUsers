@@ -1,18 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { Nullable } from '../../types';
-import { auth } from '../thunk/userAuthThunk';
+import { auth } from '../thunk';
 
 type InitialStateType = {
   errorMessage: Nullable<string>;
-  isLoadingApp: boolean;
   isProgress: boolean;
   isAuthRequest: boolean;
 };
 
 export const initialState: InitialStateType = {
   errorMessage: '',
-  isLoadingApp: false,
   isProgress: false,
   isAuthRequest: false,
 };
@@ -23,10 +21,6 @@ export const appSlice = createSlice({
   reducers: {
     occurredError: (state, action: PayloadAction<Nullable<string>>) => {
       state.errorMessage = action.payload;
-    },
-
-    startApp: state => {
-      state.isLoadingApp = true;
     },
   },
   extraReducers: builder => {
@@ -62,4 +56,4 @@ export const appSlice = createSlice({
   },
 });
 
-export const { occurredError, startApp } = appSlice.actions;
+export const { occurredError } = appSlice.actions;

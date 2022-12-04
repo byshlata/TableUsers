@@ -1,5 +1,3 @@
-export { userAuthSlice, logout } from './userAuthSlice';
+export { userSlice, logout } from './userSlice';
 
-export { occurredError, startApp } from './appSlice';
-
-export { cleanSlice } from './usersSlice';
+export { occurredError } from './appSlice';

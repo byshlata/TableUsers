@@ -1,7 +1,6 @@
-import { Status } from 'enums';
-import { InitStateUserAuthSliceType } from 'store/slice/userAuthSlice';
+import { UserResponseType } from 'types';
 
-export const loadStateToken = (): InitStateUserAuthSliceType | undefined => {
+export const loadStateToken = (): UserResponseType | undefined => {
   try {
     const tokenLocalStorage = localStorage.getItem('token');
     if (tokenLocalStorage === null) {
@@ -10,15 +9,13 @@ export const loadStateToken = (): InitStateUserAuthSliceType | undefined => {
     const token = JSON.parse(tokenLocalStorage) as string;
     return {
       user: {
-        token,
-        status: Status.Active,
-        updatedAt: '',
-        timeLastLogin: '',
-        name: '',
+        id: -1,
         email: '',
-        _v: 1,
-        _id: '',
-        createdAt: '',
+        firstName: '',
+        lastName: '',
+        image: null,
+        pdf: null,
+        token,
       },
     };
   } catch (err) {

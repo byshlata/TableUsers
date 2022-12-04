@@ -18,12 +18,13 @@ export const Register = (): React.ReactElement => {
   const isLoading = useSelector(selectorIsProgress);
 
   const onFinish = (values: UserRegistrationType): void => {
-    if (values.email && values.password && values.name) {
+    if (values.email && values.password && values.firstName && values.lastName) {
       dispatch(
         createAccount({
           email: values.email,
           password: values.password,
-          name: values.name,
+          firstName: values.firstName,
+          lastName: values.lastName,
         }),
       );
     }
@@ -45,13 +46,27 @@ export const Register = (): React.ReactElement => {
         style={{ width: '100%' }}
       >
         <Form.Item
-          label="Name"
-          name="name"
+          label="FirstName"
+          name="firstName"
           rules={[
             {
               required: true,
               type: 'string',
-              message: 'Please input your username!',
+              message: 'Please input your first name!',
+            },
+          ]}
+        >
+          <Input disabled={isLoading} />
+        </Form.Item>
+
+        <Form.Item
+          label="LastName"
+          name="lastName"
+          rules={[
+            {
+              required: true,
+              type: 'string',
+              message: 'Please input your last name!',
             },
           ]}
         >

@@ -46,7 +46,7 @@ export const Login = (): React.ReactElement => {
             {
               required: true,
               type: 'email',
-              message: 'Please input your username!',
+              message: 'Please input your email!',
             },
           ]}
         >

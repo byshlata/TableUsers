@@ -1,24 +1,22 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { appSlice } from './slice/appSlice';
-import { userAuthSlice } from './slice/userAuthSlice';
-import { usersSlice } from './slice/usersSlice';
 
+import { userSlice } from 'store/slice/userSlice';
 import { loadStateToken, saveState } from 'utils/saveLocalStorage';
 
 export const store = configureStore({
   reducer: {
     app: appSlice.reducer,
-    userAuth: userAuthSlice.reducer,
-    users: usersSlice.reducer,
+    user: userSlice.reducer,
   },
   preloadedState: {
-    userAuth: loadStateToken(),
+    user: loadStateToken(),
   },
 });
 
 store.subscribe(() => {
-  saveState(store.getState().userAuth.user?.token || '');
+  saveState(store.getState().user.user?.token || '');
 });
 
 export type AppRootStore = ReturnType<typeof store.getState>;

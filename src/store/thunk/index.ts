@@ -1,3 +1,8 @@
-export { loginAccount, createAccount, auth } from './userAuthThunk';
+export { loginAccount, createAccount, auth } from 'store/thunk/authThunk';
 
-export { deleteUsers, getUsers, updateUsers } from './usersThunk';
+export {
+  deleteAccount,
+  getLinkPDF,
+  updateUser,
+  updateAvatar,
+} from 'store/thunk/userThunk';

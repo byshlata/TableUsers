@@ -2,7 +2,8 @@ import React, { ReactElement } from 'react';
 
 import 'antd/dist/antd.css';
 
-import { Button, Typography } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { Avatar, Button, Typography } from 'antd';
 
 import style from './UserBadge.module.sass';
 
@@ -12,17 +13,23 @@ type UserBadgeType = {
   callback: () => void;
   disable: boolean;
   name: string;
+  image: string | null;
 };
 
-export const UserBadge = ({ callback, disable, name }: UserBadgeType): ReactElement => {
+export const UserBadge = ({
+  callback,
+  disable,
+  name,
+  image,
+}: UserBadgeType): ReactElement => {
   const onClick = (): void => {
     callback();
   };
-
   return (
     <div className={style.block}>
       <div className={style.item}>
-        <Text mark>{name}</Text>
+        <Text>{name}</Text>
+        <Avatar src={image} icon={<UserOutlined />} />
         <Button type="primary" disabled={disable} onClick={onClick}>
           Logout
         </Button>

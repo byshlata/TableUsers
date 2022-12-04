@@ -1,6 +1,6 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 
-import { message } from 'antd';
+import { message, Spin } from 'antd';
 import { useSelector } from 'react-redux';
 import 'antd/dist/antd.css';
 
@@ -8,38 +8,26 @@ import mainStyle from '../styles/container.module.sass';
 
 import style from './App.module.sass';
 
-import { Progress, UserBadge } from 'components';
-import { END_LOADING } from 'components/progress/data/data';
+import { UserBadge } from 'components';
 import { useAppDispatch } from 'hooks';
 import { Routers } from 'pages';
 import {
   auth,
   logout,
+  selectorAvatarUser,
   selectorErrorMessage,
   selectorIsAuthRequest,
-  selectorIsLoadingApp,
   selectorIsProgress,
-  selectorUserAuthName,
-  startApp,
+  selectorUserFirstName,
 } from 'store';
 
 export const App = (): ReactElement => {
   const dispatch = useAppDispatch();
-  const isAuthRequest = useSelector(selectorIsAuthRequest);
-  const isLoadingApp = useSelector(selectorIsLoadingApp);
   const isLoading = useSelector(selectorIsProgress);
-  const isAuth = useSelector(selectorUserAuthName);
+  const isAuthRequest = useSelector(selectorIsAuthRequest);
+  const userFirstName = useSelector(selectorUserFirstName);
   const errorMessage = useSelector(selectorErrorMessage);
-  const nameUserAuth = useSelector(selectorUserAuthName);
-
-  const [percent, setPercent] = useState(0);
-
-  useEffect(() => {
-    if (percent > END_LOADING && isAuthRequest) {
-      dispatch(startApp());
-    }
-  }, [percent]);
-
+  const avatarUser = useSelector(selectorAvatarUser);
   useEffect(() => {
     dispatch(auth());
   }, []);
@@ -57,16 +45,21 @@ export const App = (): ReactElement => {
   return (
     <div className={style.appWrapper}>
       <div className={style.header}>
-        {isAuth ? (
-          <UserBadge name={nameUserAuth || ''} disable={isLoading} callback={onLogout} />
+        {userFirstName ? (
+          <UserBadge
+            image={avatarUser}
+            name={userFirstName || ''}
+            disable={isLoading}
+            callback={onLogout}
+          />
         ) : null}
       </div>
       <div className={mainStyle.mainContainer}>
         <div className={mainStyle.container}>
-          {isLoadingApp ? (
+          {isAuthRequest ? (
             <Routers />
           ) : (
-            <Progress percent={percent} setPercent={setPercent} />
+            <Spin style={{ width: '100%', margin: '0 auto' }} size="large" />
           )}
         </div>
       </div>

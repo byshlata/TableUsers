@@ -6,45 +6,42 @@ import { UserLoginType, UserRegistrationType, UserResponseType } from 'types';
 import { setErrorResponse } from 'utils';
 
 export const createAccount = createAsyncThunk(
-  'userAuthSlice/createAccount',
+  'userSlice/createAccount',
   async (
     payload: UserRegistrationType,
-    { rejectWithValue, dispatch },
+    { rejectWithValue },
   ): Promise<UserResponseType | Function> => {
     try {
       return await AuthAPI.register(payload);
     } catch (e) {
-      return setErrorResponse(e, rejectWithValue, dispatch);
+      return setErrorResponse(e, rejectWithValue);
     }
   },
 );
 
 export const loginAccount = createAsyncThunk(
-  'userAuthSlice/loginAccount',
+  'userSlice/loginAccount',
   async (
     payload: UserLoginType,
-    { rejectWithValue, dispatch },
+    { rejectWithValue },
   ): Promise<UserResponseType | Function> => {
     try {
       return await AuthAPI.login(payload);
     } catch (e) {
-      return setErrorResponse(e, rejectWithValue, dispatch);
+      return setErrorResponse(e, rejectWithValue);
     }
   },
 );
 
 export const auth = createAsyncThunk(
-  'userAuthSlice/auth',
-  async (
-    _,
-    { rejectWithValue, dispatch, getState },
-  ): Promise<UserResponseType | Function> => {
+  'userSlice/auth',
+  async (_, { rejectWithValue, getState }): Promise<UserResponseType | Function> => {
     try {
       const state = getState() as AppRootStore;
-      const token = state.userAuth.user?.token || '';
+      const token = state.user.user?.token || '';
       return await AuthAPI.auth(token);
     } catch (e) {
-      return setErrorResponse(e, rejectWithValue, dispatch);
+      return setErrorResponse(e, rejectWithValue);
     }
   },
 );
